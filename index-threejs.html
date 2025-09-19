@@ -1,134 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NextGen_Vision — 3D Starfield</title>
-  <style>
-    :root{--accent:#00e6ff}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:#e9fbff;background:#000;}
-    #three-wrap{position:fixed;inset:0;z-index:0}
-    nav{
-      position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:40;background:rgba(0,0,0,0.45);padding:8px 14px;border-radius:12px;backdrop-filter: blur(6px);
-      display:flex;gap:18px;align-items:center;
-    }
-    nav a{color:#e6f7ff;text-decoration:none;font-weight:700}
-    header{height:100vh;display:flex;align-items:center;justify-content:center;z-index:30;position:relative;padding:28px}
-    .logo{
-      text-align:center;color:var(--accent);z-index:30;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:28px;border-radius:16px;backdrop-filter: blur(4px);box-shadow:0 14px 60px rgba(0,0,0,0.6);
-      max-width:920px;width:95%;
-    }
-    .brand{font-size:clamp(36px,7vw,64px);font-weight:900;letter-spacing:1px;}
-    .sub{color:#dff7ff;opacity:0.9;margin-top:6px}
-    main section{min-height:68vh;padding:84px 20px;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:10}
-    .card{max-width:920px;background:rgba(255,255,255,0.03);padding:18px;border-radius:12px}
-    footer{padding:28px;text-align:center;color:#9fb7c1;opacity:.9}
-    /* mobile friendly adjustments */
-    @media (max-width:700px){nav{padding:8px 10px;gap:10px;font-size:0.9rem}}
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Event</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div id="three-wrap" aria-hidden="true"></div>
+<body class="bg-gray-100 text-gray-900">
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#internship">Research Internship</a>
-    <a href="#events">Daily Events</a>
-    <a href="#offers">Best Offers</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <!-- Main Container -->
+  <div class="max-w-3xl mx-auto px-4 py-8">
 
-  <header id="home">
-    <div class="logo" role="banner" aria-label="NextGen Vision">
-      <div class="brand">NextGen_Vision</div>
-      <div class="sub">Students • Research • Professional Growth</div>
-      <div style="margin-top:12px">
-        <a class="btn" href="#internship" style="color:var(--accent);text-decoration:none;font-weight:700">View Internships</a>
+    <!-- Title Section -->
+    <header class="text-center mb-8">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 leading-tight">
+        Daily Event Highlights
+      </h1>
+      <p class="text-sm sm:text-base text-gray-600 mt-2">
+        Stay updated with our latest activities and insights
+      </p>
+    </header>
+
+    <!-- Event Card -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden mb-6">
+      <img src="https://via.placeholder.com/800x400" alt="Event Image" class="w-full h-48 sm:h-64 object-cover">
+      <div class="p-5">
+        <h2 class="text-lg sm:text-xl font-semibold text-gray-800">
+          Example Event Title
+        </h2>
+        <p class="text-gray-600 text-sm sm:text-base mt-2">
+          A short description of today’s event, making it easy to understand even on mobile.
+        </p>
+        <a href="https://example.com" target="_blank"
+           class="inline-block mt-3 text-blue-600 hover:text-blue-800 text-sm sm:text-base font-medium">
+          🔗 Read More
+        </a>
       </div>
     </div>
-  </header>
 
-  <main>
-    <section id="internship"><div class="card"><h2>Research Internship</h2><p>Put your internship descriptions and apply links here.</p></div></section>
-    <section id="events"><div class="card"><h2>Daily Events</h2><p>Events list / schedule goes here.</p></div></section>
-    <section id="offers"><div class="card"><h2>Best Offers for Devices</h2><p>Showcase student-friendly offers and links.</p></div></section>
-    <section id="contact"><div class="card"><h2>Contact</h2><p>Email: <a href="mailto:info@nextgenvision.com" style="color:var(--accent)">info@nextgenvision.com</a></p></div></section>
-  </main>
+    <!-- Another Event -->
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+      <img src="https://via.placeholder.com/800x400" alt="Event Image" class="w-full h-48 sm:h-64 object-cover">
+      <div class="p-5">
+        <h2 class="text-lg sm:text-xl font-semibold text-gray-800">
+          Second Event Title
+        </h2>
+        <p class="text-gray-600 text-sm sm:text-base mt-2">
+          Another event description with properly scaled font sizes for mobile.
+        </p>
+        <a href="https://example.com" target="_blank"
+           class="inline-block mt-3 text-blue-600 hover:text-blue-800 text-sm sm:text-base font-medium">
+          🔗 Read More
+        </a>
+      </div>
+    </div>
 
-  <footer>© <span id="yr"></span> NextGen_Vision</footer>
+  </div>
 
-  <!-- Three.js from CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.156.0/build/three.min.js"></script>
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-
-    // Basic Three.js starfield (optimized)
-    (function(){
-      const container = document.getElementById('three-wrap');
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 2000);
-      camera.position.z = 300;
-
-      const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-      renderer.setSize(innerWidth, innerHeight);
-      container.appendChild(renderer.domElement);
-
-      // create star geometry
-      const starsGeo = new THREE.BufferGeometry();
-      const starCount = Math.min(1200, Math.floor((innerWidth*innerHeight)/300)); // adaptive
-      const positions = new Float32Array(starCount * 3);
-      const sizes = new Float32Array(starCount);
-
-      for(let i=0;i<starCount;i++){
-        const r = 800;
-        const theta = THREE.MathUtils.randFloatSpread(360);
-        const phi = THREE.MathUtils.randFloatSpread(360);
-        positions[i*3] = (Math.random()-0.5) * r;
-        positions[i*3+1] = (Math.random()-0.5) * r * 0.6;
-        positions[i*3+2] = (Math.random()-0.5) * r;
-        sizes[i] = Math.random()*1.5 + 0.2;
-      }
-      starsGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      starsGeo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-
-      // Points material
-      const starsMaterial = new THREE.PointsMaterial({
-        color: 0x00e6ff,
-        size: 1.6,
-        sizeAttenuation: true,
-        depthWrite: false,
-        transparent: true,
-        opacity: 0.9
-      });
-      const starField = new THREE.Points(starsGeo, starsMaterial);
-      scene.add(starField);
-
-      // gentle rotation for subtle 3D motion
-      function animate(){
-        starField.rotation.y += 0.0007;
-        starField.rotation.x += 0.00015;
-        renderer.render(scene, camera);
-        requestAnimationFrame(animate);
-      }
-
-      // responsiveness
-      window.addEventListener('resize', ()=>{
-        renderer.setSize(innerWidth, innerHeight);
-        camera.aspect = innerWidth / innerHeight;
-        camera.updateProjectionMatrix();
-      });
-
-      // Pause animation on page hidden to save power
-      document.addEventListener('visibilitychange', ()=> {
-        if(document.hidden) renderer.setAnimationLoop(null);
-        else renderer.setAnimationLoop(animate);
-      });
-
-      animate();
-    })();
-  </script>
 </body>
 </html>
+
