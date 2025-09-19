@@ -1,229 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NextGen_Vision — Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextGen_Vision</title>
   <style>
-    :root{
-      --bg:#000;
-      --muted:#111;
-      --accent: #00e6ff;
-      --glass: rgba(255,255,255,0.04);
-      --card: rgba(255,255,255,0.03);
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: white;
+      overflow-x: hidden;
     }
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
-    body{
-      background: linear-gradient(180deg,var(--bg), #050505 60%);
-      color:#e6f7ff;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      overflow-x:hidden;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: rgba(0,0,0,0.8);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
     }
-
-    /* Top navigation */
-    nav{
-      position:fixed;top:12px;left:50%;transform:translateX(-50%);
-      z-index:60;padding:8px 14px;border-radius:12px;
-      background:rgba(0,0,0,0.4);backdrop-filter: blur(6px);
-      display:flex;gap:18px;align-items:center;box-shadow:0 6px 18px rgba(0,0,0,0.6);
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #00ffcc;
+      letter-spacing: 2px;
     }
-    nav a{color:#ddd;text-decoration:none;font-weight:600;font-size:0.95rem;opacity:0.95}
-    nav a:hover{color:var(--accent);transform:translateY(-2px);transition:.18s}
-
-    /* Fullscreen header */
-    header{
-      height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:10;
-      text-align:center;
-      padding:40px 20px;
+    nav {
+      display: flex;
+      gap: 20px;
     }
-    .hero{
-      max-width:1000px;width:100%;
-      display:grid;grid-template-columns:1fr;gap:18px;align-items:center;
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s;
     }
-
-    /* Logo area */
-    .logo-wrap{
-      display:flex;flex-direction:column;align-items:center;gap:10px;
-      padding:36px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    nav a:hover {
+      color: #00ffcc;
     }
-    .brand {
-      font-size: clamp(36px, 6vw, 64px);
-      letter-spacing:1px;font-weight:800;color:var(--accent);
-      text-transform:uppercase;
-      display:inline-block;
-      transition: transform .25s ease;
-      will-change:transform;
+    section {
+      padding: 120px 20px;
+      min-height: 100vh;
+      text-align: center;
     }
-    .tag{font-size:1.05rem;color:#cfeff7;opacity:0.9;}
-
-    /* subtle glass panel for description and CTAs */
-    .panel{
-      margin-top:6px;padding:14px;border-radius:12px;background:var(--card);font-size:1rem;
-      color:#dff6ff;max-width:780px;
+    h1 {
+      font-size: 60px;
+      margin-bottom: 20px;
+      color: #00ffcc;
     }
-
-    /* small contact CTA */
-    .cta-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px}
-    .btn{padding:10px 16px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:#dff6ff;text-decoration:none;font-weight:700}
-    .btn.primary{background:linear-gradient(90deg, rgba(0,230,255,0.06), rgba(0,200,255,0.04));border:1px solid rgba(0,230,255,0.25);color:var(--accent)}
-
-    /* particle canvas sits behind header content */
-    #particleCanvas{
-      position:fixed;inset:0;z-index:0;pointer-events:none;
-      filter: blur(.35px) saturate(1.05);
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      margin-top: 15px;
+      background: #00ffcc;
+      color: black;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s;
     }
-
-    /* sections */
-    main section{
-      min-height:70vh;padding:84px 18px;display:flex;align-items:center;justify-content:center;flex-direction:column;
-      gap:14px;background:linear-gradient(180deg, transparent, rgba(255,255,255,0.01));
+    .btn:hover {
+      background: #009977;
+      color: white;
     }
-    .section-card{max-width:920px;width:100%;padding:20px;border-radius:12px;background:var(--glass);box-shadow:0 6px 30px rgba(0,0,0,0.5);}
-
-    footer{padding:32px;text-align:center;color:#9fb7c1;opacity:.9}
-
-    /* responsive */
-    @media (min-width:900px){
-      .hero{grid-template-columns:1fr 380px;align-items:center}
-      .logo-wrap{align-items:flex-start;padding:36px 46px}
-      .panel{text-align:left}
+    .event {
+      margin-top: 40px;
     }
-
-    /* small hover micro-animation for logo */
-    .brand:hover{transform:translateY(-4px) scale(1.02)}
+    .event img {
+      max-width: 500px;
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #00ffcc;
+    }
+    /* Background animation */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(0,255,204,0.2), transparent 70%);
+      animation: pulse 6s infinite alternate;
+      z-index: -1;
+    }
+    @keyframes pulse {
+      from { transform: scale(1); opacity: 0.7; }
+      to { transform: scale(1.2); opacity: 0.3; }
+    }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#internship">Research Internship</a>
-    <a href="#events">Daily Events</a>
-    <a href="#offers">Best Offers</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="animated-bg"></div>
 
-  <canvas id="particleCanvas" aria-hidden="true"></canvas>
-
-  <header id="home" role="banner">
-    <div class="hero">
-      <div class="logo-wrap" aria-label="NextGen Vision logo area">
-        <!-- Replace this text with an image <img src="logo.png" alt="NextGen Vision logo"> if you have a logo file -->
-        <div class="brand" id="brandText">NextGen_Vision</div>
-        <div class="tag">Students • Research • Professional Growth</div>
-        <div class="panel">
-          <p style="margin:0 0 10px 0">
-            A student-first startup helping learners & professionals access research internships, devices, and daily events — lightweight, modern, and eco-friendly.
-          </p>
-          <div class="cta-row">
-            <a class="btn primary" href="#internship">See Internships</a>
-            <a class="btn" href="#offers">Device Offers</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- small right column (optional) -->
-      <div style="display:flex;align-items:center;justify-content:center;">
-        <div style="width:260px;text-align:center;">
-          <div style="font-size:0.95rem;margin-bottom:8px;opacity:0.92">Quick facts</div>
-          <div style="background:rgba(255,255,255,0.02);padding:16px;border-radius:12px;">
-            <strong>3rd Research Internship:</strong><br>Congratulations!
-            <div style="margin-top:10px;font-size:0.95rem;opacity:0.9">Theme: Black • 3D feel • Easy & eco-friendly</div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <header>
+    <div class="logo">NextGen_Vision</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#internship">Research Internship</a>
+      <a href="#events">Daily Events</a>
+      <a href="#offers">Best Offers</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <main>
-    <section id="internship">
-      <div class="section-card">
-        <h2>Research Internship</h2>
-        <p>Details about available internships, application steps, timelines, and mentors. Add PDFs, deadlines, and a simple apply button (mailto or Google form).</p>
-      </div>
-    </section>
+  <section id="home">
+    <h1>Welcome to NextGen_Vision</h1>
+    <p>Innovating for Students & Working Professionals</p>
+  </section>
 
-    <section id="events">
-      <div class="section-card">
-        <h2>Daily Events</h2>
-        <p>Show a compact timeline or card list of daily sessions, workshops, or office hours. Keep each item simple for fast reading.</p>
-      </div>
-    </section>
+  <section id="internship">
+    <h1>Research Internship</h1>
+    <p>Explore opportunities at IITs, NITs, and beyond with NextGen_Vision.</p>
+  </section>
 
-    <section id="offers">
-      <div class="section-card">
-        <h2>Best Offers for Devices</h2>
-        <p>Student-focused device deals, refurbished laptops, phones, or software discounts. Link to partner pages and add limited-time badges.</p>
-      </div>
-    </section>
+  <section id="events">
+    <h1>Daily Events</h1>
+    <p>Stay updated with the latest events, workshops, and seminars for your growth.</p>
 
-    <section id="contact">
-      <div class="section-card">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:info@nextgenvision.com" style="color:var(--accent)">info@nextgenvision.com</a></p>
-        <p>Or add a short contact form / WhatsApp link here.</p>
-      </div>
-    </section>
-  </main>
+    <div class="event">
+      <img src="event1.jpg" alt="Event 1">
+      <br>
+      <a href="https://example.com/event1" target="_blank" class="btn">View Event 1</a>
+    </div>
 
-  <footer>© <span id="year"></span> NextGen_Vision — Built for students & pros</footer>
+    <div class="event">
+      <img src="event2.jpg" alt="Event 2">
+      <br>
+      <a href="https://example.com/event2" target="_blank" class="btn">View Event 2</a>
+    </div>
+  </section>
 
-  <script>
-    // small year update
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <section id="offers">
+    <h1>Best Offers</h1>
+    <p>Exclusive student discounts and best deals on devices.</p>
+  </section>
 
-    // Simple eco-friendly particle system (canvas). Low particle count for efficiency.
-    (function(){
-      const canvas = document.getElementById('particleCanvas');
-      const ctx = canvas.getContext('2d');
-      let w = canvas.width = innerWidth;
-      let h = canvas.height = innerHeight;
-      const DPR = Math.min(window.devicePixelRatio || 1, 2); // limit DPR to reduce cost
-      canvas.width = w * DPR; canvas.height = h * DPR; canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
-      ctx.scale(DPR, DPR);
-
-      let particles = [];
-      const COUNT = Math.max(30, Math.floor((w*h)/120000)); // small adaptive count
-      for(let i=0;i<COUNT;i++){
-        particles.push({
-          x: Math.random()*w,
-          y: Math.random()*h,
-          r: 0.6 + Math.random()*1.8,
-          vx: (Math.random()-0.5)*0.15,
-          vy: (Math.random()-0.5)*0.15,
-          alpha: 0.1 + Math.random()*0.65
-        });
-      }
-
-      function draw(){
-        ctx.clearRect(0,0,w,h);
-        // faint vignette
-        ctx.fillStyle = 'rgba(0,0,0,0.25)';
-        ctx.fillRect(0,0,w,h);
-
-        for(let p of particles){
-          p.x += p.vx;
-          p.y += p.vy;
-          if(p.x < -10) p.x = w+10;
-          if(p.x > w+10) p.x = -10;
-          if(p.y < -10) p.y = h+10;
-          if(p.y > h+10) p.y = -10;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-          ctx.fillStyle = `rgba(0,230,255,${p.alpha})`;
-          ctx.fill();
-        }
-        requestAnimationFrame(draw);
-      }
-      window.addEventListener('resize', ()=>{
-        w = canvas.width = innerWidth; h = canvas.height = innerHeight;
-        canvas.width = w * DPR; canvas.height = h * DPR; canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
-        ctx.scale(DPR, DPR);
-      });
-      requestAnimationFrame(draw);
-    })();
-  </script>
+  <section id="contact">
+    <h1>Contact Us</h1>
+    <p>Follow our journey and learn more through our official YouTube channel.</p>
+    <a href="https://www.youtube.com/@YourChannel" target="_blank" class="btn">Visit YouTube Channel</a>
+  </section>
 </body>
 </html>
+
+   
+  
